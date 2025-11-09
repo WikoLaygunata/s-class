@@ -100,6 +100,34 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Thin, modern scrollbar for the letter modal */
+        #letterContent {
+            /* Firefox */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(156,163,175,0.6) rgba(255,255,255,0.6);
+        }
+
+        /* WebKit browsers */
+        #letterContent::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        #letterContent::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.6);
+            border-radius: 9999px;
+        }
+
+        #letterContent::-webkit-scrollbar-thumb {
+            background: rgba(156,163,175,0.6);
+            border-radius: 9999px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        #letterContent::-webkit-scrollbar-thumb:hover {
+            background: rgba(107,114,128,0.8);
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -792,7 +820,95 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-white relative">
+        <!-- Easter Egg - Flying Bird -->
+        <div id="flyingBird" class="absolute pointer-events-auto cursor-pointer" style="transition: all 3s ease-in-out;">
+            <div class="relative group" onclick="showLetterModal()">
+                <div class="text-5xl transform hover:scale-125 transition-transform duration-300">
+                    🐦
+                </div>
+                <div class="absolute -bottom-2 -right-2 text-2xl animate-bounce">
+                    ✉️
+                </div>
+                <div class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs rounded-lg py-2 px-3 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    Klik untuk baca surat! 📬
+                </div>
+            </div>
+        </div>
+
+        <!-- Letter Modal -->
+        <div id="letterModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg max-w-2xl w-full shadow-2xl transform transition-all scale-95 border-4 border-yellow-600 max-h-[80vh] overflow-auto" id="letterContent">
+                <!-- Envelope Header -->
+                <div class="bg-gradient-to-r from-yellow-600 to-orange-600 text-white p-6 relative">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-4xl">✉️</span>
+                            <h3 class="text-2xl font-bold">Surat Random</h3>
+                        </div>
+                        <button onclick="closeLetterModal()" class="text-white hover:text-gray-200 transition-colors">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Letter Body -->
+                <div class="p-8 space-y-6">
+                    <div class=" text-gray-600 italic">
+                        Jakarta, November 2025
+                    </div>
+                    
+                    <div class="text-gray-800 space-y-3 leading-relaxed">
+                        <!-- <p class="text-lg font-semibold">
+                            Halo semuanya,
+                        </p> -->
+                        
+                        <!-- <p class="indent-8">
+                            Selamat! 🎉 Kamu telah menemukan easter egg rahasia ini! Tidak semua orang punya ketelitian untuk menemukan burung kecil yang terbang membawa surat ini. Ini adalah tanda bahwa kamu memiliki <strong>curiosity</strong> yang tinggi - salah satu karakteristik penting mahasiswa S-Class!
+                        </p>
+                        
+                        <p class="indent-8">
+                            S-Class bukan hanya tentang nilai akademik yang tinggi, tapi juga tentang <strong>keberanian untuk mengeksplorasi</strong>, <strong>ketekunan dalam belajar</strong>, dan <strong>semangat untuk terus berkembang</strong>. Sama seperti burung yang terus terbang mencari petualangan baru, mahasiswa S-Class juga terus mengejar prestasi dan inovasi tanpa batas.
+                        </p>
+                        
+                        <p class="indent-8">
+                            Ingatlah, kesuksesan bukan hanya tentang mencapai tujuan, tapi juga tentang menikmati perjalanan dan menemukan hal-hal menarik di sepanjang jalan. Keep exploring, keep learning, and keep flying high! 🚀
+                        </p> -->
+                        <p class="indent-8">Hi guys, aku Wiks 🐦. Sedikit cerita, S-Class itu program yang baru dibuat awal 2025 dan angkatan aku itu yang pertama. Sebelum naik semester 2, kami diemail oleh bu Irene atas ketersediaan ikut program ini. Ada 70 orang yang dipilih di Kemanggisan, itu diambil berdasar nilai matkul CS tertinggi kayak algo dll. Well, awalnya kupikir agak cringe emang namanya s-class, ayano koji bos, agak ngeri kalau isinya jadi orang orang NPD hahaha (aman isi orangnya ramah ramah). Tapi menarik lah karena ada program convert nilai dll.</p>
+
+                        <p>Pengalamanku di class ini? Yah.. kelas ini kayak kelas biasa aja sih guys, bedanya teman kelasnya lebih sedikit, tiap hari jumat ada kegiatan, dan orang-orangnya juga ga serajin dan se-nerd yang dibayangkan. Senang bisa di kelas ini karena mungkin orang-orangnya punya tingkat excitement dan curiosity yang lebih tinggi (walau tetap banyak yang suka bolos juga). Ngomongin kegiatan jumat, banyak yang nganggep kegiatan ini sebagai beban dan malas hadir (literally lebih dari setengahnya), tapi menurutku kegiatan hari jumat itu tempat nongkrong yang cukup fun (dibandingkan di kos doang). Kegiatan training jumat juga tak sestrict itu, kadang ada kegiatan, kadang kosong, tapi yang pasti dapat fasilitas ruang kelas dari pagi sampai sore yang bisa dijadikan tempat ketemu teman dan ngerjain hal. Trainingnya juga asik, dosennya asik, pengurusnya asik. Mungkin belum sempurna, tapi kedepannya program ini pasti akan terus jadi lebih baik lagi.</p>
+
+                        <p>Overall, it's a fun experience ^-^</p>
+                    </div>
+                    
+                    <!-- Signature -->
+                    <div class="pt-6 border-t-2 border-gray-300">
+                        <div class="text-right space-y-2">
+                            <p class="font-semibold text-gray-800">Salam hangat,</p>
+                            <p class="text-2xl font-bold text-transparent bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text">
+                                Tim S-Class Kemanggisan
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Fun Fact Box -->
+                    <!-- <div class="bg-white rounded-lg p-4 border-2 border-yellow-400 shadow-md">
+                        <p class="text-sm text-gray-700">
+                            <strong class="text-yellow-600">💡 Fun Fact:</strong> Burung melambangkan kebebasan, pencapaian tinggi, dan perspektif yang luas - nilai-nilai yang dipegang teguh oleh setiap mahasiswa S-Class!
+                        </p>
+                    </div> -->
+                </div>
+                
+                <!-- Footer -->
+                <div class="bg-gradient-to-r from-yellow-100 to-orange-100 p-4 rounded-b-lg text-center">
+                    <button onclick="closeLetterModal()" class="bg-gradient-to-r from-gray-900 to-gray-700 text-white px-8 py-3 rounded-lg font-semibold hover:from-gray-800 hover:to-gray-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        Tutup Surat
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Hubungi Kami</h2>
@@ -972,6 +1088,99 @@
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
         });
+
+        // Flying Bird Easter Egg - Only in Contact Section
+    let birdInterval;
+
+    function initFlyingBird() {
+        const contactSection = document.getElementById('contact');
+        const bird = document.getElementById('flyingBird');
+        
+        if (!contactSection || !bird) return;
+        
+        // Set initial random position
+        moveToRandomPosition();
+        
+        // Move to random position every 3 seconds
+        birdInterval = setInterval(moveToRandomPosition, 3000);
+    }
+
+    function moveToRandomPosition() {
+        const contactSection = document.getElementById('contact');
+        const bird = document.getElementById('flyingBird');
+        
+        if (!contactSection || !bird) return;
+        
+        const sectionRect = contactSection.getBoundingClientRect();
+        const sectionTop = contactSection.offsetTop;
+        const sectionHeight = contactSection.offsetHeight;
+        const sectionWidth = contactSection.offsetWidth;
+        
+        // Random position within contact section (with padding)
+        const padding = 100;
+        const randomX = Math.random() * (sectionWidth - padding * 2) + padding;
+        const randomY = Math.random() * (sectionHeight - padding * 2) + padding;
+        
+        bird.style.left = randomX + 'px';
+        bird.style.top = randomY + 'px';
+    }
+
+    // Letter Modal Functions
+    function showLetterModal() {
+        const modal = document.getElementById('letterModal');
+        const modalContent = document.getElementById('letterContent');
+        
+        if (!modal || !modalContent) return;
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        
+        // Animation
+        setTimeout(() => {
+            modalContent.style.transform = 'scale(1)';
+        }, 10);
+        
+        // Stop bird movement when modal is open
+        if (birdInterval) {
+            clearInterval(birdInterval);
+        }
+    }
+
+    function closeLetterModal() {
+        const modal = document.getElementById('letterModal');
+        const modalContent = document.getElementById('letterContent');
+        
+        if (!modal || !modalContent) return;
+        
+        modalContent.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            // Resume bird movement
+            initFlyingBird();
+        }, 200);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('letterModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLetterModal();
+        }
+    });
+
+    // Initialize flying bird when page loads
+    window.addEventListener('load', function() {
+        initFlyingBird();
+    });
+
+    // Cleanup interval when leaving page
+    window.addEventListener('beforeunload', function() {
+        if (birdInterval) {
+            clearInterval(birdInterval);
+        }
+    });
     </script>
 
 </body>
